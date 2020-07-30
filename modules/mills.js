@@ -24,6 +24,10 @@ const millsSchema = new mongoose.Schema({
   capaticity: {
     type: String,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("mills", millsSchema);

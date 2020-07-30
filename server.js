@@ -13,6 +13,7 @@ connectDB();
 //Route Files
 const registerFarmer = require("./routes/farmerRoutes");
 const registermills = require("./routes/millsRouter");
+const registerBuyers = require("./routes/buyerRoutes");
 const app = express();
 
 //Body parser
@@ -27,6 +28,8 @@ app.use(logger);
 //Mount routers
 app.use("/api/v1/farmers", registerFarmer);
 app.use("/api/v1/mills", registermills);
+app.use("/api/v1/buyers", registerBuyers);
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 6000;

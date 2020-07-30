@@ -24,6 +24,10 @@ const RegisterFarmerSchema = new mongoose.Schema({
   cultivatedArea: {
     type: String,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("registerFarmer", RegisterFarmerSchema);

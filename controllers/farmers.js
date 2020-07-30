@@ -1,10 +1,11 @@
 const farmer = require("../modules/registerFarmer");
 const errorResponse = require("../utils/errorResponse");
+const asyncHandler = require("../middleware/async");
 
 //@desc      Get all farmers
 //@route     GET /api/v1/farmers/
 //@access    Public
-exports.getfarmers = async (req, res, next) => {
+exports.getfarmers = asyncHandler(async (req, res, next) => {
   try {
     const farmers = await farmer.find();
     res.status(200).json({
@@ -15,12 +16,12 @@ exports.getfarmers = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
+});
 
 //@desc      Get single farmer
 //@route     GET /api/v1/farmers/:id
 //@access    Public
-exports.getfarmer = async (req, res, next) => {
+exports.getfarmer = asyncHandler(async (req, res, next) => {
   try {
     const aFarmer = await farmer.findById(req.params.id);
 
@@ -38,12 +39,12 @@ exports.getfarmer = async (req, res, next) => {
     //res.status(200).json({ success: false });
     next(err);
   }
-};
+});
 
 //@desc      Create new farmer
 //@route     POST /api/v1/farmers/
 //@access    private
-exports.createfarmers = async (req, res, next) => {
+exports.createfarmers = asyncHandler(async (req, res, next) => {
   try {
     const farmers = await farmer.create(req.body);
     res.status(201).json({
@@ -53,12 +54,12 @@ exports.createfarmers = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
+});
 
 //@desc      UPdate  farmer
 //@route     PUT /api/v1/farmers/:id
 //@access    private
-exports.updatefarmer = async (req, res, next) => {
+exports.updatefarmer = asyncHandler(async (req, res, next) => {
   try {
     const farmerUp = await farmer.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -73,12 +74,12 @@ exports.updatefarmer = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
+});
 
 //@desc      Delete  farmer
 //@route     DELETE /api/v1/farmers/:id
 //@access    private
-exports.deletefarmer = async (req, res, next) => {
+exports.deletefarmer = asyncHandler(async (req, res, next) => {
   try {
     const farmerdel = await farmer.findByIdAndDelete(req.params.id);
     if (!farmerdel) {
@@ -89,4 +90,4 @@ exports.deletefarmer = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
+});
