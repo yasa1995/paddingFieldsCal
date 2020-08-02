@@ -17,6 +17,7 @@ const registerBuyers = require("./routes/buyerRoutes");
 const expectedHearvestFarmer = require("./routes/expectedHarestRoutes");
 const availableStock = require("./routes/availableStockRoutes");
 const millsavailableStock = require("./routes/millsAvailableStockRoutes");
+const auth = require("./routes/auth");
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use("/api/v1/buyers", registerBuyers);
 app.use("/api/v1/expectedharvest", expectedHearvestFarmer);
 app.use("/api/v1/availablestock", availableStock);
 app.use("/api/v1/millsavailablestock", millsavailableStock);
+app.use("/api/v1/auth", auth);
 
 app.use(errorHandler);
 
