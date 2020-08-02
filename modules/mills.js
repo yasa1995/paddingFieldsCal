@@ -29,5 +29,10 @@ const millsSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+//cascad delete courses when a farmers is deleted
+millsSchema.pre("remove", async function (next) {
+  await this.model("millsavailableStock").deleteMany({ mill: this._id });
+  next();
+});
 
 module.exports = mongoose.model("mills", millsSchema);

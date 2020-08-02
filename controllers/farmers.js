@@ -81,11 +81,12 @@ exports.updatefarmer = asyncHandler(async (req, res, next) => {
 //@access    private
 exports.deletefarmer = asyncHandler(async (req, res, next) => {
   try {
-    const farmerdel = await farmer.findByIdAndDelete(req.params.id);
+    const farmerdel = await farmer.findById(req.params.id);
+
     if (!farmerdel) {
       return res.status(200).json({ success: false });
     }
-
+    farmerdel.remove();
     res.status(200).json({ success: true, data: {} });
   } catch (err) {
     next(err);

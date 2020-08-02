@@ -30,4 +30,10 @@ const RegisterFarmerSchema = new mongoose.Schema({
   },
 });
 
+//cascad delete courses when a farmers is deleted
+RegisterFarmerSchema.pre("remove", async function (next) {
+  await this.model("expectedharvestFarmer").deleteMany({ farmer: this._id });
+  next();
+});
+
 module.exports = mongoose.model("registerFarmer", RegisterFarmerSchema);

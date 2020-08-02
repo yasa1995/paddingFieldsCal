@@ -14,6 +14,10 @@ connectDB();
 const registerFarmer = require("./routes/farmerRoutes");
 const registermills = require("./routes/millsRouter");
 const registerBuyers = require("./routes/buyerRoutes");
+const expectedHearvestFarmer = require("./routes/expectedHarestRoutes");
+const availableStock = require("./routes/availableStockRoutes");
+const millsavailableStock = require("./routes/millsAvailableStockRoutes");
+
 const app = express();
 
 //Body parser
@@ -29,6 +33,9 @@ app.use(logger);
 app.use("/api/v1/farmers", registerFarmer);
 app.use("/api/v1/mills", registermills);
 app.use("/api/v1/buyers", registerBuyers);
+app.use("/api/v1/expectedharvest", expectedHearvestFarmer);
+app.use("/api/v1/availablestock", availableStock);
+app.use("/api/v1/millsavailablestock", millsavailableStock);
 
 app.use(errorHandler);
 
