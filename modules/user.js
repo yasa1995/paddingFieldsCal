@@ -13,12 +13,9 @@ const UserSchema = new mongoose.Schema({
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       "Please add a valid email",
     ],
+    unique: true,
   },
-  role: {
-    type: String,
-    enum: ["deal", "buyer"],
-    default: "user",
-  },
+
   password: {
     type: String,
     required: [true, "Please add a password"],
@@ -30,6 +27,10 @@ const UserSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  phoneNumber: {
+    type: String,
+    require: [true, "Please add Phone number"],
   },
 });
 //Encrpyt password using bcrypt

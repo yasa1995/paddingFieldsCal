@@ -8,6 +8,8 @@ const {
   createfarmers,
 } = require("../controllers/farmers");
 
+const { protect } = require("../middleware/auth");
+
 //Include Other resource routers
 const expectedharvest = require("./expectedHarestRoutes");
 const availableStock = require("./availableStockRoutes");
@@ -18,7 +20,11 @@ const router = express.Router();
 router.use("/:farmerId/expectedharvest", expectedharvest);
 router.use("/:farmerId/availablestock", availableStock);
 
-router.route("/").get(getfarmers).post(createfarmers);
-router.route("/:id").get(getfarmer).put(updatefarmer).delete(deletefarmer);
+router.route("/").get(getfarmers).post(protect, createfarmers);
+router
+  .route("/:id")
+  .get(getfarmer)
+  .put(protect, updatefarmer)
+  .delete(protect, deletefarmer);
 
 module.exports = router;

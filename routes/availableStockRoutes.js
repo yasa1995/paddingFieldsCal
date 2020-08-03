@@ -8,12 +8,14 @@ const {
   deleteAvailableStock,
 } = require("../controllers/availableStockCont");
 
+const { protect } = require("../middleware/auth");
+
 const router = express.Router({ mergeParams: true });
-router.route("/").get(getavailableStock).post(addavailableStock);
+router.route("/").get(getavailableStock).post(protect, addavailableStock);
 router
   .route("/:id")
   .get(getaAvailableStock)
-  .put(updateAvailableStock)
-  .delete(deleteAvailableStock);
+  .put(protect, updateAvailableStock)
+  .delete(protect, deleteAvailableStock);
 
 module.exports = router;
