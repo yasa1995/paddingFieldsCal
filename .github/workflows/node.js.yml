@@ -27,13 +27,10 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    
-    - uses: mr-smithers-excellent/docker-build-push@v4
-      name: Build & push Docker image
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v4
       with:
         image: yasantha1995/demo_app
-        tag: latest
-        registry: registry-url.io
-        dockerfile: Dockerfile.ci
+        registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
